@@ -1,0 +1,25 @@
+{
+  "name": "bun-htmx-boilerplate",
+  "type": "module",
+  "scripts": {
+    "css:build": "tailwindcss -i ./public/css/base.css -o ./public/css/app.css",
+    "css:watch": "tailwindcss -i ./public/css/base.css -o ./public/css/app.css --watch",
+    "dev:server": "bun run --hot src/index.ts",
+    "dev": "concurrently -n css,server -c auto \"bun run css:watch\" \"bun run dev:server\"",
+    "build": "bun run css:build && bun build ./src/index.ts --minify --outdir ./dist",
+    "start": "bun run dist/index.js",
+    "lint": "biome lint .",
+    "format": "biome format --write .",
+    "check": "biome check ."
+  },
+  "dependencies": {
+    "hono": "^4.12.14",
+    "tailwindcss": "^4.2.2"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^2.4.12",
+    "@tailwindcss/cli": "^4.2.2",
+    "@types/bun": "latest",
+    "concurrently": "^9.2.1"
+  }
+}
